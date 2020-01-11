@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', 'RegistrationController@index')->name('main');
+Route::post('/', 'RegistrationController@store')->name('registration');
+
+Route::get('/add/post', 'AddPostController@index')->name('postIndex');
+Route::post('/add/post', 'AddPostController@store')->name('postSave')->middleware('addPost');
