@@ -17,11 +17,11 @@ class AddPostMiddleware
      */
     public function handle($request, Closure $next)
     {
+        DB::purge('dop_servachek');
+
         if ($request->user_id === '1') {
-            DB::purge('dop_servachek');
             Config::set('database.connections.dop_servachek.host', 'mysql1');
         } elseif ($request->user_id === '2') {
-            DB::purge('dop_servachek');
             Config::set('database.connections.dop_servachek.host', 'mysql2');
         } else {
             die('Error with condition middleware');
